@@ -1,0 +1,27 @@
+{
+  "name": "outfy-api",
+  "version": "1.0.0",
+  "description": "REST API with Node.js, Express, MongoDB, JWT for outfy-app",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/app.js"
+  },
+  "keywords": [
+    "rest",
+    "api",
+    "node",
+    "express",
+    "mongodb",
+    "jwt"
+  ],
+  "author": "Knifucrab",
+  "license": "MIT",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongodb": "^6.10.0",
+    "mongoose": "^6.0.11"
+  }
+}
