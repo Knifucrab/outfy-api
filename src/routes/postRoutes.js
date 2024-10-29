@@ -6,7 +6,7 @@ const authMiddleware = require("../middleware/authMiddleware");
 // Route for creating a post
 router.post(
   "/createPost",
-  authMiddleware.authenticateToken,
+  // authMiddleware.authenticateToken,
   postController.createPost
 );
 
