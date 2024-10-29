@@ -6,15 +6,11 @@ const authMiddleware = require("../middleware/authMiddleware");
 // Route to get user data
 router.get(
   "/:id",
-  // authMiddleware.authenticateToken,
+  authMiddleware.authenticateToken,
   userController.getUserData
 );
 
 // Route to list all users
-router.get(
-  "/",
-  // authMiddleware.authenticateToken,
-  userController.listAllUsers
-);
+router.get("/", authMiddleware.authenticateToken, userController.listAllUsers);
 
 module.exports = router;
