@@ -6,6 +6,8 @@ exports.createPost = async (req, res) => {
     const {title, description, imageUrl, clothes} = req.body;
     const userId = req.user.id; // Assuming you have middleware to extract the user ID from the JWT
 
+    console.log("User ID:", userId); // Debug statement
+
     // Create a new post
     const post = new Post({
       title,
