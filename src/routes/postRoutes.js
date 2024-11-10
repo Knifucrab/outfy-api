@@ -9,5 +9,10 @@ router.post(
   authMiddleware.authenticateToken,
   postController.createPost
 );
+router.get(
+  "/listMyPosts",
+  authMiddleware.authenticateToken,
+  postController.listMyPosts
+);
 
 module.exports = router;

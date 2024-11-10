@@ -26,3 +26,20 @@ exports.createPost = async (req, res) => {
     res.status(500).json({success: false, error: "Server Error"});
   }
 };
+
+// Controller function to list all posts of the authenticated user
+exports.listMyPosts = async (req, res) => {
+  try {
+    const userId = req.user.id; // Assuming you have middleware to extract the user ID from the JWT
+
+    console.log("User ID:", userId); // Debug statement
+
+    // Find all posts by the authenticated user
+    const posts = await Post.find({userId});
+
+    res.status(200).json({success: true, data: posts});
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({success: false, error: "Server Error"});
+  }
+};
