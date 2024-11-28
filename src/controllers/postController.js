@@ -1,4 +1,5 @@
 const Post = require("../models/postModel");
+const User = require("../models/userModel");
 
 // Controller function to create a new post
 exports.createPost = async (req, res) => {
