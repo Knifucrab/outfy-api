@@ -33,13 +33,19 @@ exports.login = async (req, res) => {
 
 // Register controller
 exports.register = async (req, res) => {
-  const {username, email, password, age, birthDate, profilePicture} = req.body;
+  const {username, email, password, birthDate} = req.body;
 
   try {
     // Check if the user already exists
     const existingUser = await User.findOne({email});
     if (existingUser) {
       return res.status(409).json({message: "User already exists"});
+    }
+
+    // Check if the username is already taken
+    const existingUsername = await User.findOne({username});
+    if (existingUsername) {
+      return res.status(409).json({message: "Username already taken"});
     }
 
     // Hash the password
@@ -50,9 +56,10 @@ exports.register = async (req, res) => {
       username,
       email,
       password: hashedPassword,
-      age,
       birthDate,
-      profilePicture,
+      registrationDate: new Date(),
+      postCount: 0,
+      likeCount: 0,
     });
 
     await newUser.save();
