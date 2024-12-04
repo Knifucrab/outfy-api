@@ -143,9 +143,10 @@ exports.addComment = async (req, res) => {
     // Save the post to the database
     await post.save();
 
-    res
-      .status(200)
-      .json({success: true, message: "Comment added successfully"});
+    // Fetch the updated comments
+    const updatedPost = await Post.findById(postId);
+
+    res.status(200).json({success: true, comments: updatedPost.comments});
   } catch (error) {
     console.error(error);
     res.status(500).json({success: false, error: "Server Error"});
