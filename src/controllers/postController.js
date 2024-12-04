@@ -79,7 +79,10 @@ exports.addLike = async (req, res) => {
     // Update the user's like count
     await User.findByIdAndUpdate(userId, {$inc: {likeCount: 1}});
 
-    res.status(200).json({success: true, message: "Post liked succesfully"});
+    // Fetch the updated post data
+    const updatedPost = await Post.findById(postId);
+
+    res.status(200).json({success: true, data: updatedPost});
   } catch (error) {
     console.error(error);
     res.status(500).json({success: false, error: "Server Error"});
@@ -108,7 +111,10 @@ exports.removeLike = async (req, res) => {
     // Update the user's like count
     await User.findByIdAndUpdate(userId, {$inc: {likeCount: -1}});
 
-    res.status(200).json({success: true, data: post});
+    // Fetch the updated post data
+    const updatedPost = await Post.findById(postId);
+
+    res.status(200).json({success: true, data: updatedPost});
   } catch (error) {
     console.error(error);
     res.status(500).json({success: false, error: "Server Error"});
