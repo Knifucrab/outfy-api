@@ -15,6 +15,12 @@ router.get(
   postController.listMyPosts
 );
 
+// Route for listing all posts of all users
+router.get(
+  "/listAllPosts",
+  authMiddleware.authenticateToken,
+  postController.listAllPosts
+);
 // Route for adding a like to a post
 router.post(
   "/:postId/like",

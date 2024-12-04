@@ -48,6 +48,19 @@ exports.listMyPosts = async (req, res) => {
   }
 };
 
+// Controller function to list all posts of all users
+exports.listAllPosts = async (req, res) => {
+  console.log("blabla");
+  try {
+    // Find all posts
+    const posts = await Post.find();
+
+    res.status(200).json({success: true, data: posts});
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({success: false, error: "Server Error"});
+  }
+};
 // Controller function to add a like to a post
 exports.addLike = async (req, res) => {
   try {
