@@ -35,4 +35,11 @@ router.post(
   postController.addComment
 );
 
+// Route for getting a post by ID
+router.get(
+  "/:postId",
+  authMiddleware.authenticateToken,
+  postController.getPostById
+);
+
 module.exports = router;

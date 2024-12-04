@@ -152,3 +152,22 @@ exports.addComment = async (req, res) => {
     res.status(500).json({success: false, error: "Server Error"});
   }
 };
+
+// Controller function to get a post by ID
+exports.getPostById = async (req, res) => {
+  try {
+    const {postId} = req.params;
+
+    // Find the post by ID
+    const post = await Post.findById(postId);
+
+    if (!post) {
+      return res.status(404).json({success: false, error: "Post not found"});
+    }
+
+    res.status(200).json({success: true, data: post});
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({success: false, error: "Server Error"});
+  }
+};
