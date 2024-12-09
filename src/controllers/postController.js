@@ -50,10 +50,12 @@ exports.listMyPosts = async (req, res) => {
 
 // Controller function to list all posts of all users
 exports.listAllPosts = async (req, res) => {
-  console.log("blabla");
   try {
-    // Find all posts
-    const posts = await Post.find();
+    // Find all posts and populate the userId field with username and profilePicture
+    const posts = await Post.find().populate(
+      "userId",
+      "username profilePicture"
+    );
 
     res.status(200).json({success: true, data: posts});
   } catch (error) {
